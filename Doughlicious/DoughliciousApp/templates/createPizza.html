@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block links %}
+    <li class="nav-item">
+        <a class="nav-link" href="{% url "previousOrders" %}"> Previous Orders</a>
+    </li> 
+{% endblock links %}
+
+{% block content %}
+<div class="container mt-3 mb-3">
+    <div class="row align-items-center justify-content-center h-100">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="text-center mb-4">Create Your Pizza</h1>
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            {{ form.size.label_tag }}
+                            {{ form.size }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.crust.label_tag }}
+                            {{ form.crust }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.sauce.label_tag }}
+                            {{ form.sauce }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.cheese.label_tag }}
+                            {{ form.cheese }}
+                        </div>
+                        <div class="form-check mb-3">
+                            {{ form.pepperoni }}
+                            {{ form.pepperoni.label_tag }}
+                        </div>
+                        <div class="form-check mb-3">
+                            {{ form.chicken }}
+                            {{ form.chicken.label_tag }}
+                        </div>
+                        <div class="form-check mb-3">
+                            {{ form.ham }}
+                            {{ form.ham.label_tag }}
+                        </div>
+                        <div class="form-check mb-3">
+                            {{ form.pineapple }}
+                            {{ form.pineapple.label_tag }}
+                        </div>
+                        <div class="form-check mb-3">
+                            {{ form.peppers }}
+                            {{ form.peppers.label_tag }}
+                        </div>
+                        <div class="form-check mb-3">
+                            {{ form.mushroom }}
+                            {{ form.mushroom.label_tag }}
+                        </div>
+                        <div class="form-check mb-3">
+                            {{ form.onions }}
+                            {{ form.onions.label_tag }}
+                        </div>
+                        <!-- Add more form fields or submit button here -->
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>    
+<!-- 
+    <form class="select" action="." method='POST'> 
+        {% csrf_token %}
+        {{ form.as_p}}
+        <button type="submit"> create a new pizza </button>
+    </form>
+-->
+{% endblock content %}

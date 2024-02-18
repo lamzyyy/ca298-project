@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block links %}
+
+<li class="nav-item">
+    <a class="nav-link" href="{% url "previousOrders" %}"> Previous Orders</a>
+</li> 
+{% endblock links %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mt-2">Delivery Details</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            {{ form.name }}
+        </div>
+        <div class="mb-3">
+            {{ form.address }}
+        </div>
+        <div class="mb-3">
+            {{ form.cardNum }}
+        </div>
+        <div class="mb-3">
+            {{ form.expDate }}
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+{% endblock content %}

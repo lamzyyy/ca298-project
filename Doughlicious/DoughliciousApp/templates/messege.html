@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block links %}
+    <li class="nav-item">
+        <a class="nav-link" href="{% url "previousOrders" %}"> Previous Orders</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{% url "createPizza" %}"> Create A Pizza </a>
+    </li>  
+{% endblock links %}
+
+{% block content %}
+    <div class="ms-3">
+    <h1> {{ Messege }} </h1>
+    <p> your order has been shipped to: <p>{{ order.deliveryDetails.address }}</p> at:  <p class="ms-4">{{ order.orderDate }}</p></p>
+    <p> <p class="fw-bold">Pizza:</p>{{ order.pizza }} </p>
+    </div>
+{% endblock content %}
