@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="container-fluid ps-4 pe-4">
-    <form class="d-flex justify-content-center align-items-center  flex-column " action="." method='POST'> 
+<div class="container-fluid ps-4 pe-4 mt-4">
+    <form class="d-flex justify-content-center align-items-center  flex-column "  method='POST'> 
         {% csrf_token %}
         {{ form.as_table }}
-        <button class="" type="submit"> login </button>
+        <button class=" mt-4 btn btn-primary" type="submit"> login </button>
     </form>
 </div>
 {% endblock content %}

@@ -58,7 +58,7 @@ class createDeliveryDetailsForm(forms.ModelForm):
         widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 3, 'placeholder': 'Address'})
     )
     cardNum = forms.CharField(
-        max_length=16,
+        max_length=20,
         widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Card Number'})
     )
     expDate = forms.DateField(

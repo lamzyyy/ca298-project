@@ -99,6 +99,6 @@ def createDeliveryDetails(request, pizzaId):
 
 @login_required
 def showMessege(request, orderId):
-    messege = 'thanks for ordering'
+    messege = 'Thank you for ordering!'
     instance = get_object_or_404(order, id=orderId)
     return render(request, 'messege.html', {'Messege': messege, 'order': instance})

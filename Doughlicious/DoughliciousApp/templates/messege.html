@@ -12,7 +12,7 @@
 {% block content %}
     <div class="ms-3">
     <h1> {{ Messege }} </h1>
-    <p> your order has been shipped to: <p>{{ order.deliveryDetails.address }}</p> at:  <p class="ms-4">{{ order.orderDate }}</p></p>
-    <p> <p class="fw-bold">Pizza:</p>{{ order.pizza }} </p>
+    <p class="fw-bold"> Your order will be delivered to: <p>{{ order.deliveryDetails.address }}</p> <span class="fw-bold">Ordered On:</span>   <p class="ms-4">{{ order.orderDate }}</p> </p>
+    <p> <p class="fw-bold">Pizza Ordered :</p>{{ order.pizza }} </p>
     </div>
 {% endblock content %}

@@ -12,6 +12,17 @@
     <h2 class="mt-2">Delivery Details</h1>
     <form method="post">
         {% csrf_token %}
+        {% if form.errors %}
+        <div class="alert alert-danger" role="alert">
+            <ul>
+                {% for field, errors in form.errors.items %}
+                    {% for error in errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
         <div class="mb-3">
             {{ form.name }}
         </div>

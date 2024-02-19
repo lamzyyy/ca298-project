@@ -7,14 +7,16 @@
 {% endblock links %}
 
 {% block content %}
+
     <div class="container-fluid p-3 ">
         <h3 class="display-6">My orders:</h3>
         {% for order in orders %}
             <div class="card mt-4">
                 <div class="card-header"> Ordered by: {{ order.deliveryDetails.name }} </div>
                 <div class="card-body"><p class="card-text">Pizza Details:</p>{{ order.pizza }} </div>
-                <div class="card-footer d-flex justify-content-between"> <span class="d-none d-sm-block"> to: {{ order.deliveryDetails.address }} </span> <a class="justify-content-end" href= "{% url "specificOrder" order.id  %}"> view more</a> </div>
+                <div class="card-footer d-flex justify-content-between"> <span class="d-none d-sm-block"> Sent to: {{ order.deliveryDetails.address }} </span> <a class=" d-md-none d-block justify-content-end" href= "{% url "specificOrder" order.id  %}"> view more</a> </div>
             </div>
     {% endfor %}
     </div>
+    
 {% endblock content %}
