@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
 from django.shortcuts import get_object_or_404
 from .validators import *
+from django.core.exceptions import ValidationError
 
 
 class UserSignupView(CreateView):
@@ -66,36 +67,21 @@ def createDeliveryDetails(request, pizzaId):
             if form.is_valid():
                 delivery_details = form.save()
                 order_instance = order.objects.create(user=request.user, deliveryDetails=delivery_details, pizza=pizza)
-            return redirect("/messege/" + str(order_instance.id) + "/")
-        
+                return redirect("/messege/" + str(order_instance.id) + "/")
+                
+        except ValidationError as e:
+            form.add_error('expDate', str(e))
+            return render(request, 'createDeliveryDetails.html', {'form': form})
+
+
+
         except ValueError as e:
             error_message = str(e)
             form.add_error('cardNum', error_message)
             return render(request, 'createDeliveryDetails.html', {'form': form})
     else:
         form = createDeliveryDetailsForm()
-        return render(request, 'createDeliveryDetails.html', {'form': form})
-
-'''
-def createDeliveryDetails(request, pizzaId):
-    if request.method == "POST":
-        form = createDeliveryDetailsForm(request.POST)
-        if form.is_valid():
-            deliveryDetails = form.save()
-            pizza = get_object_or_404(Pizza, pizzaId=pizzaId)
-            Order = order.objects.create(user=request.user, deliveryDetails=deliveryDetails)
-            Order.pizza.set([pizza])
-            return redirect("/messege/" + str(Order.id) + "/")
-        
-        else:
-            try:
-                form.cleaned_data['cardNum'] = validate_cardNum(form.cleaned_data['card'])
-            except ValueError as e:
-                error_message = str(e)
-                form.add_error('card_number', error_message)
-    else:
-        form = createDeliveryDetailsForm()
-    return render(request, 'createDeliveryDetails.html', {'form': form})'''
+    return render(request, 'createDeliveryDetails.html', {'form': form})
 
 @login_required
 def showMessege(request, orderId):

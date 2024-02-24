@@ -2,9 +2,6 @@
 
 {% block links %}
     <li class="nav-item">
-        <a class="nav-link" href="{% url "previousOrders" %}"> Previous Orders</a>
-    </li>
-    <li class="nav-item">
         <a class="nav-link" href="{% url "createPizza" %}"> Create A Pizza </a>
     </li>  
 {% endblock links %}
@@ -14,5 +11,6 @@
     <h1> {{ Messege }} </h1>
     <p class="fw-bold"> Your order will be delivered to: <p>{{ order.deliveryDetails.address }}</p> <span class="fw-bold">Ordered On:</span>   <p class="ms-4">{{ order.orderDate }}</p> </p>
     <p> <p class="fw-bold">Pizza Ordered :</p>{{ order.pizza }} </p>
+    <p>order another pizza? <a href="{% url "createPizza" %}">click here</a></p>
     </div>
 {% endblock content %}

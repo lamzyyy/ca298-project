@@ -105,10 +105,11 @@ class Pizza(models.Model):
     
 class deliveryDetails(models.Model):
     detailsId = models.AutoField(primary_key=True)
-    name = models.CharField(default=(""), max_length=50)
-    address = models.CharField(default=(""), max_length=50)
+    name = models.CharField(default=(""), max_length=50, validators=[validate_names])
+    address = models.CharField(default=(""), max_length=100)
     cardNum = models.CharField( default = '', max_length=20, validators=[validate_cardNum])
-    expDate = models.DateField(default=(""), auto_now=False, auto_now_add=False)
+    cvv = models.CharField(default='', max_length=3, validators=[validate_cvv])
+    expDate = models.DateField(default=(""), auto_now=False, auto_now_add=False, validators=[validate_date_format])
 
     def __str__(self) -> str:
         return ('Name: {}. living at {}').format(self.name, self.address)

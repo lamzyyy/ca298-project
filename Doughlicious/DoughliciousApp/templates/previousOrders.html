@@ -4,19 +4,30 @@
     <li class="nav-item">
         <a class="nav-link" href="{% url "createPizza" %}"> Create A Pizza</a>
     </li> 
+    <li class="nav-item">
+        <a class="nav-link" href="{% url "previousOrders" %}"> Previous Orders</a>
+    </li> 
 {% endblock links %}
 
 {% block content %}
-
-    <div class="container-fluid p-3 ">
-        <h3 class="display-6">My orders:</h3>
-        {% for order in orders %}
-            <div class="card mt-4">
-                <div class="card-header"> Ordered by: {{ order.deliveryDetails.name }} </div>
-                <div class="card-body"><p class="card-text">Pizza Details:</p>{{ order.pizza }} </div>
-                <div class="card-footer d-flex justify-content-between"> <span class="d-none d-sm-block"> Sent to: {{ order.deliveryDetails.address }} </span> <a class=" d-md-none d-block justify-content-end" href= "{% url "specificOrder" order.id  %}"> view more</a> </div>
-            </div>
-    {% endfor %}
+    {% if orders%}
+        <div class="container-fluid p-3 ">
+            <h3 class="display-6">My orders:</h3>
+            {% for order in orders %}
+                <div class="card mt-4">
+                    <div class="card-header"> Ordered by: {{ order.deliveryDetails.name }} </div>
+                    <div class="card-body"><p class="card-text">Pizza Details:</p>{{ order.pizza }} </div>
+                    <div class="card-footer d-flex justify-content-between"> <span class="d-none d-sm-block"> Sent to: {{ order.deliveryDetails.address }} </span> <a class=" d-md-none d-block justify-content-end" href= "{% url "specificOrder" order.id  %}"> view more</a> </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+    <div class="alert alert-info" role="alert">
+        <h4 class="alert-heading">Welcome!</h4>
+        <p>You don't have any previous orders yet. Start creating your delicious pizza now!</p>
+        <hr>
+        <p class="mb-0"><a href="{% url 'createPizza' %}" class="btn btn-primary">Create New Pizza</a></p>
     </div>
+    {% endif %}
     
 {% endblock content %}

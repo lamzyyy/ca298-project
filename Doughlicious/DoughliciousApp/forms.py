@@ -48,19 +48,24 @@ class createDeliveryDetailsForm(forms.ModelForm):
     
     class Meta:
         model = deliveryDetails
-        fields = ['name', 'address', 'cardNum', 'expDate']
+        fields = ['name', 'address', 'cardNum', 'cvv', 'expDate']
 
     name = forms.CharField(
-        max_length=100,
+        max_length=50,
         widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Name'})
     )
     address = forms.CharField(
-        widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 3, 'placeholder': 'Address'})
+        widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 2, 'placeholder': 'Address'})
     )
     cardNum = forms.CharField(
         max_length=20,
         widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Card Number'})
     )
+    cvv = forms.CharField(
+        max_length=3,
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Cvv'})
+    )
+    
     expDate = forms.DateField(
         widget=forms.DateInput(attrs={'class': 'form-control', 'type': 'date', 'placeholder': 'Expiration Date'})
     )

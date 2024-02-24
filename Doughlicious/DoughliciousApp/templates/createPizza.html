@@ -1,9 +1,6 @@
 {% extends "base.html" %}
 
 {% block links %}
-    <li class="nav-item">
-        <a class="nav-link" href="{% url "previousOrders" %}"> Previous Orders</a>
-    </li> 
 {% endblock links %}
 
 {% block content %}
@@ -60,7 +57,7 @@
                             {{ form.onions.label_tag }}
                         </div>
                         <!-- Add more form fields or submit button here -->
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary">Order</button>
                     </form>
                 </div>
             </div>
